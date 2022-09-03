@@ -9,6 +9,9 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     sudo ./aws/install && \
     rm -rf ./aws
 
+# Install 'az' client
+RUN  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
 # Install 'direnv'
 RUN apt install -y direnv
 
