@@ -13,7 +13,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 # Install 'direnv'
-RUN apt install -y direnv
+RUN apt install -y direnv && \
 
 # Install 'op' 1password client
 RUN ARCH="amd64" && \
@@ -23,6 +23,9 @@ RUN ARCH="amd64" && \
     rm -r op.zip op
 
 USER vscode
+
+# Ensure direnv in initialized
+RUN echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
 # Install 'tfenv'
 RUN git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv && \
